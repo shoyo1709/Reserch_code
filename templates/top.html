@@ -1,0 +1,39 @@
+<!-- top.html トップページ画面:カレンダーやToDoリストなどの選択をする-->  
+{% extends "base.html" %}
+
+{%block title %}TOP{% endblock %}
+
+{% block header_content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/top.css') }}">
+{% endblock %}
+
+{% block body_header %}{% endblock %}
+
+{% block content %}
+<div class="top-container">
+    <nav class="nav-icons">
+        <form action="/task-clarify" method="GET" class="nav-icon-form">
+            <button type="submit" class="nav-icon">目標設定</button>
+        </form>
+
+        <form action="/todo" method="GET" class="nav-icon-form">
+            <button type="submit" class="nav-icon">ToDo</button>
+        </form>
+
+        <form action="/calendar" method="GET" class="nav-icon-form">
+            <button type="submit" class="nav-icon">カレンダー</button>
+        </form>
+
+        <form action="/reflection" method="GET" class="nav-icon-form">
+            <button type="submit" class="nav-icon">振り返り</button>
+        </form>
+    </nav>
+
+    <section class="goal-display">
+        <p class="goal-label">目標</p>
+        <p class="goal-text">○○を達成する</p>
+    </section>
+</div>
+{% endblock %}
+
+{% block footer %}{% endblock %}

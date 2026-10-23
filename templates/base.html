@@ -1,0 +1,31 @@
+<!--  base.html ベース画面ファイル：ヘッダーやフッターをここで記述する-->
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}タイトル{% endblock %}</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css') }}">
+        {% block header_content %}ヘッダー内容{% endblock %}
+    </head>
+    <body>
+        {% block body_header %}
+            <header class="site-header">
+                <nav class="site-nav">
+                    <a href="{{ url_for('top') }}">TOP</a>
+                    <a href="{{ url_for('task_clarify_app.show_template') }}">目標設定</a>
+                    <a href="{{ url_for('todo_app.show_template') }}">ToDo</a>
+                    <a href="{{ url_for('calendar_app.show_template') }}">カレンダー</a>
+                    <a href="{{ url_for('reflection_app.show_template') }}">振り返り</a>
+                </nav>
+            </header>
+        {% endblock %}
+        {% block content %}内容{% endblock %}
+    </body>
+    <footer>
+        {% block footer %}
+        <form action="/" method="get">
+            <button>TOP画面へ</button>
+        </form>
+        {% endblock %}
+    </footer>
+</html>

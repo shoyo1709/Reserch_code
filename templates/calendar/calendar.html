@@ -1,0 +1,96 @@
+<!-- calender.html カレンダー画面:カレンダーを表示する-->  
+{% extends "base.html" %}
+
+{% block title %}カレンダー画面{% endblock %}
+
+{% block header_content %}
+  <!-- fullcalendarのソースコード参照：種類は「bootstrap5」-->  
+  <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet'>
+  <link href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css' rel='stylesheet'>
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.20/index.global.min.js'></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/calendar.css') }}">
+{% endblock %}
+
+{% block content %}
+    <!-- イベント変更モーダル -->
+    <dialog id="edit-modal" class="edit-modal" style="justify-self: center;">
+      <div class="modal-content" style="padding: 10px; width: 100%;">
+        <h3>予定編集</h3>
+
+        <div class="form-group">
+          <label>タイトル</label>
+          <input type="text" id="modal-title" />
+
+          <select name="modal-label" id="modal-label" required>
+            <option value="公的">公的</option>
+            <option value="私的">私的</option>
+            <option value="タスク">タスク</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="display: flex; align-items: flex-start;">
+          <label>　備考　</label>
+          <textarea id="modal-description" rows="3" cols="35"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>開始日時</label>
+          <input type="datetime-local" id="modal-start" />
+        </div>
+
+        <div class="form-group">
+          <label>終了日時</label>
+          <input type="datetime-local" id="modal-end" />
+        </div>
+
+        <!-- タスクの進捗時間入力(タスクの予定を選択したときだけ表示) -->
+        <div class="form-group" id="progress-group">
+          <label>進捗時間</label>
+          <input type="number" id="modal-progress" min="0" step="1" />分
+          <button id="modal-progress-btn">進捗を保存</button>
+        </div>
+
+        <div class="modal-buttons" style="display:flex; gap:10px;"> <!-- flexboxを有効化し、要素間の幅を指定 -->
+          <button id="modal-save-btn">保存</button>
+          <button id="modal-cancel-btn">キャンセル</button>
+          <button id="modal-delete-btn" style="margin-left:auto;">削除</button> <!-- 削除ボタンだけ右寄せ -->
+        </div>
+      </div>
+
+    </dialog>
+    
+    <!-- 通常のカレンダー -->
+    <div id="calendar"></div>
+
+    <!-- イベント追加画面のボタン -->
+    <form action="/calendar/event" method="get">
+    <button>イベント追加画面へ</button>
+    </form>
+
+    <!-- スケジューリング開始ボタン -->
+    <button id="schedule">スケジューリング</button>
+
+    <!-- スケジューリングモーダル -->
+    <dialog id="schedule-modal">
+        <div class="form-group">
+          <label>目標達成日時</label>
+          <input type="datetime-local" id="schedule-deadline" />
+        </div>
+
+        <div class="modal-buttons" style="display:flex; gap:10px;"> <!-- flexboxを有効化し、要素間の幅を指定 -->
+          <button id="modal-decide-btn">決定</button>
+          <button id="schedule-cancel-btn">キャンセル</button>
+        </div>
+    </dialog>
+
+    <script src="{{url_for('static',filename='scripts/calender.js')}}"></script>
+    <script src="{{url_for('static',filename='scripts/schedule.js')}}"></script>
+    <script id="eventsData" type="application/json">
+        {{ events | tojson }}
+    </script>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+

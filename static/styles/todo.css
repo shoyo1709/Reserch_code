@@ -1,0 +1,147 @@
+/* todo画面のスタイルシート */
+
+/* タスク表示タグの親要素 */
+.task-container{
+    display: flex;
+    flex-direction: column;  /* 子要素を縦に並べる */
+    justify-content: center;  /* 水平方向の中央揃え */
+    align-items: center;      /* 垂直方向の中央揃え */
+}
+
+
+/* タスク表示タグの書式 */
+.rendar-task{
+    margin-bottom: 10px;
+    width: 100%;
+    border: 2px solid #333333;
+    border-radius: 10px;
+
+    /* 子要素の表示 */
+    display: flex;
+    flex-direction: column;  /* 子要素を縦に並べる */
+    justify-content: center;  /* 水平方向の中央揃え */
+    align-items: stretch;     /* 子要素(summaryや詳細表)を横幅いっぱいに広げる(centerだと中身の幅に縮む) */
+}
+
+/* タスク表示タグ内のsummaryの設定 */
+.rendar-task summary{
+    width: 100%;
+    padding: 10px;
+    font-size: 25px;
+    gap: 20px;
+    box-sizing: border-box;  /* paddingを含めてwidth100%に収める */
+
+    display: flex;
+    align-items: center; /* 上下中央揃え */
+    
+}
+
+/* 開閉時のsummaryとpの間のボーダー調整 */
+.rendar-task[open] summary {
+    border-bottom: 2px solid #333333; /* 開いた時にヘッダーとコンテンツの間に線を引く */
+}
+
+/* 独自の三角アイコンを作る（右向き） */
+.rendar-task summary::before {
+    content: "";   /* 空のコンテンツを挿入（これがないと表示されない） */
+    display: inline-block;  /* 横並びで表示 */
+    width: 0;
+    height: 0;
+    margin-right: 8px;  /* 右に8pxの余白 */
+
+    /* この3行で三角形を作っている */
+    border-top: 8px solid transparent; /* 上の辺を透明に */
+    border-bottom: 8px solid transparent;  /* 下の辺を透明に */
+    border-left: 11px solid #333; /* 三角形の色 */ /* 左の辺だけ色をつける */
+    
+    /* 開閉時にアニメーションさせる */
+    transition: transform 0.2s;  
+}
+
+/* 開いた時に三角を下に向ける */
+.rendar-task[open] summary::before {  /* 「::before」はHTML要素の前に要素を挿入する */
+    transform: rotate(90deg);  /* 90度回転させる */
+}
+
+/* タスク詳細・締め切り期限の表(枠線なし) */
+.task-detail{
+    width: 100%;
+    border: none;
+    border-collapse: collapse;
+    font-size: 20px;
+}
+
+/* 表のラベル(左列)と内容(右列) */
+.task-detail th,
+.task-detail td{
+    border: none;
+    padding: 10px; /* 画面横との幅 */
+    text-align: left;
+    vertical-align: top;
+}
+
+/* ラベル列は幅を固定して縦位置を揃える */
+.task-detail th{
+    width: 8em;
+    white-space: nowrap;
+}
+
+/* 進捗度の円の親要素(svgタグ) */ 
+.progress-container{
+    /* 円を右端の配置 */
+    margin-left: auto;
+}
+
+/* 進捗円の要素(circleタグ) */
+.circle-progress {
+    /* 円の他との関係 */
+    position: relative;
+    margin: 20px auto;
+    transform-origin: 50% 50%;
+    transform: rotate(-90deg); /* 上部からスタートさせる */
+}
+
+/* タスク情報の編集欄(入力欄と保存・キャンセルボタン) */
+.task-detail input,
+.task-detail textarea{
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 18px;
+    padding: 4px;
+}
+
+.task-detail-area{
+    width: 100%;
+    box-sizing: border-box;  /* paddingを含めてwidth100%に収める */
+    padding: 0 10px 10px;  /* 左右の余白を小さくして、横幅いっぱいに表示する */
+    text-align: left;
+}
+
+/* 入力欄の列を広げて、ラベル列以外の幅を入力欄に割り当てる */
+.task-detail td{
+    width: 100%;
+}
+
+
+/* 編集モード時のボタン */
+.task-edit-buttons{
+    display: flex;
+    gap: 10px;
+}
+
+/* タスク追加エリア(ボタンまたは追加フォーム) */
+.task-add-area{
+    margin-bottom: 10px;
+}
+
+/* タスク追加フォームの枠(タスク表示タグと同じ見た目) */
+.task-add-form{
+    border: 2px solid #333333;
+    border-radius: 10px;
+    padding: 0 10px 10px;
+}
+
+/* 編集ボタンと削除ボタンの間隔 */
+.task-detail-area > button + button{
+    margin-left: 10px;
+}

@@ -1,0 +1,31 @@
+/* calendar画面のスタイルシート */
+
+/* イベント変更モーダルの大きさ(画面からはみ出さず、内容が多いときはスクロールする) */
+#edit-modal {
+    width: min(520px, 92vw);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+#edit-modal .modal-content {
+    box-sizing: border-box;  /* paddingを含めてwidth100%に収める */
+}
+
+/* タスクの進捗時間入力欄(タスクの予定を選択したときだけ、jsでdisplayをflexにして表示する) */
+#progress-group {
+    display: none;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 進捗時間の入力欄と、数値を増減する上下の矢印ボタンを大きくする */
+#modal-progress {
+    width: 120px;
+    height: 36px;
+    font-size: 18px;
+}
+
+#modal-progress::-webkit-inner-spin-button {
+    width: 28px;
+    height: 36px;
+}

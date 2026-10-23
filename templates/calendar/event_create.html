@@ -1,0 +1,55 @@
+<!-- event_create.html イベント追加画面:情報を入力してイベントを追加する--> 
+{% extends "base.html" %}
+
+{% block title %}イベント（予定）入力{% endblock %}
+
+{% block header_content %}
+<h1>イベント追加画面</h1>
+{% endblock %}
+
+{% block content %}
+<div class="event-form-countainar">
+    <form method="POST" id="eventForm" class="eventForm">
+        <div class="eventTitle">
+            <label for="titleInput">イベント名</label>
+            <input type="text" id="titleInput" placeholder="予定名(タイトル)を入力..." required>
+
+            <select name="event-label" id="event-label" required>
+                <option value="" disabled selected>選択してください</option>
+                <option value="公的">公的</option>
+                <option value="私的">私的</option>
+            </select>
+        </div>
+
+        <div class="eventStart">
+            <label for="event-start">開始日時・時間</label>
+            <input type="datetime-local" id="event-start" required/>
+        </div>
+
+        <div class="eventEnd">
+            <label for="event-end">終了日時・時間</label>
+            <input type="datetime-local" id="event-end" required/>
+        </div>
+
+        <div class="eventButton">
+            <button id="eventButton" type="button">追加する</button>
+        </div>
+    </form>
+</div>
+
+
+<!-- 予定一覧 -->
+<div class="event-list-container">
+    <h2>予定一覧</h2>
+    <ul id="event-list"></ul>
+</div>
+
+<script src="{{url_for('static',filename='scripts/event_create.js')}}"></script>
+{% endblock %}
+
+{% block footer %}
+<form action="/calendar" method="get">
+    <button>カレンダー画面へ</button>
+</form>
+{% endblock %}
+

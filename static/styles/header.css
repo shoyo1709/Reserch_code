@@ -1,0 +1,30 @@
+/* header.css 全ページ共通のヘッダースタイル */
+
+/*.ヘッダー */
+.site-header {
+    background-color: #83afee;
+    padding: 12px 24px;
+}
+
+/* サイトナビ */
+.site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* サイトナビのaタグ */
+.site-nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95rem;
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: background-color 0.15s ease;
+}
+
+/* サイトナビのaタグにカーソルを合わせた時 */
+.site-nav a:hover {
+    background-color: #73a6ed;
+}

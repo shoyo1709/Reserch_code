@@ -1,0 +1,81 @@
+/* top.css トップページ画面のスタイル */
+
+/* トップコンテナ */ 
+.top-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+    padding: 48px 24px;
+}
+
+/* ナビアイコン（まとめて） */
+.nav-icons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 32px;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* ナビアイコンのフォーム設定*/
+.nav-icon-form {
+    flex: 1 1 140px;
+    max-width: 200px;
+}
+
+/* ナビアイコン（それぞれ） */
+.nav-icon {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border: none;
+    border-radius: 28px;
+    background-color: #4a90e2;
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+/* ナビアイコンにカーソルを合わせた時 */
+.nav-icon:hover {
+    background-color: #3a7bc8;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* ナビアイコンのカーソルをクリックした時 */
+.nav-icon:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* 目標表示の背景 */
+.goal-display {
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    padding: 32px 24px;
+    border-radius: 24px;
+    background-color: #f4f7fb;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* 目標表示の題名 */
+.goal-label {
+    margin: 0 0 8px;
+    font-size: 0.95rem;
+    color: #6b7280;
+    letter-spacing: 0.1em;
+}
+
+/* 目標の文字 */
+.goal-text {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1f2937;
+}
